@@ -1,10 +1,14 @@
-import User from "../models/user.model.js";
-import { asyncHandler } from "../controllers/asyncHandler.js";
+import {User} from "../models/user.model.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/Cloudinary.js";
 import mongoose from "mongoose";
 
+const options = {
+  httpOnly: true,
+  secure: true,
+};
 const generateAccessAndRefreshToken = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -23,7 +27,7 @@ const generateAccessAndRefreshToken = async (userId) => {
   }
 };
 
-const register = asyncHandler(async (req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
   const { username, email, fullname, password, typeofuser } = req.body;
   if (
     [username, email, fullname, password, typeofuser].some(
@@ -73,8 +77,47 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ $or: [{ username }, { email }] });
   if (!user) {
     throw new ApiError(400, "user does not Existed");
-    }
-    const isPasswordValid = await user.isPasswordCorrect(password)
+  }
+  const isPasswordValid = await user.isPasswordCorrect(password);
+  if (!isPasswordValid) {
+    throw new ApiError(401, "Invalid user Password");
+  }
+  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
+    user._id
+  );
+  console.log(user._id);
+  const loggedInUser = await User.findById(user._id).select(
+    "-password -refreshToken"
+  );
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(
+      new ApiResponse(
+        200,
+        { user: loggedInUser, accessToken, refreshToken },
+        "User Logged In Successfully"
+      )
+    );
 });
 
-export { register };
+const logoutHandler = asyncHandler(async (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $unset: {
+        refreshtoken: 1,
+      },
+    },
+    {
+      new: true,
+    }
+  );
+  return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(new ApiResponse(200, {}, "User Logged Out"));
+});
+export { registerUser, loginUser, logoutHandler };
