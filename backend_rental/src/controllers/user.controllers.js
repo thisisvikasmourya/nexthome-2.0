@@ -1,10 +1,10 @@
-import {User} from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/Cloudinary.js";
 import mongoose from "mongoose";
-
+import jwt from "jsonwebtoken";
 const options = {
   httpOnly: true,
   secure: true,
@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
   const avatarLocalPath = req.files?.avatar[0]?.path;
   if (!avatarLocalPath) {
-    throw new ApiError(400, "avatar file is ont found");
+    throw new ApiError(400, "avatar file is not found");
   }
 
   const avatar = await uploadOnCloudinary(avatarLocalPath);
@@ -55,7 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     typeofuser,
     avatar: avatar.url,
-    username: username.tolowerCase(),
+    username: username.toLowerCase(),
   });
   const createdUser = await User.findById(user._id).select(
     "-password -refreshtoken"
