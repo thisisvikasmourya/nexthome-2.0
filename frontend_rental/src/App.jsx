@@ -1,12 +1,14 @@
-// import { useState } from 'react'
+// import logo from "./logo.svg";
 import "./App.css";
-import Registration from "./components/Registration";
+import Mode from "./components/Mode";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
     <>
-      {/* <h1>rental Property</h1> */}
-      <Registration />
+      <div className="min-h-screen bg-teal-500	">
+        <Mode />
+      </div>
     </>
   );
 }

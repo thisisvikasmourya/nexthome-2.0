@@ -32,7 +32,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      required: true,
+      // required: true,
     },
     refreshtoken: {
       type: String,
