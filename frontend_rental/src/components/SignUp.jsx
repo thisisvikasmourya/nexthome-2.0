@@ -4,7 +4,7 @@ const Registration = () => {
   return (
     <>
       <div>
-        <div className="bg-white lg:w-1/4 sm-w-full rounded-lg shadow-xl align-middle	 px-6 py-6 float-right lg:mx-10 ">
+        <div className="bg-white lg:w-1/4 sm-w-full rounded-lg shadow-xl align-middle	 px-6 py-6  mx-auto ">
           <p className="text-lg font-semibold">
             Welcome to <span className="text-teal-500">Rental</span>
           </p>
