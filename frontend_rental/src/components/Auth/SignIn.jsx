@@ -12,7 +12,7 @@ const SignIn = () => {
       const url = "http://localhost:8000/api/v1/users/login";
       const response = await axios.post(url, data);
       console.log("SignIn Successfull", response.data);
-      navigate("/dashboard");
+      // navigate("/dashboard");
     } catch (error) {
       console.error("SignIn failed:", error);
     }
