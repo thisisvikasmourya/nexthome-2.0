@@ -26,7 +26,7 @@ const userSchema = new Schema(
     },
     typeofuser: {
       type: String,
-      required: true,
+      // required: true,
       enum: ["user", "admin"],
       default: "user",
     },
