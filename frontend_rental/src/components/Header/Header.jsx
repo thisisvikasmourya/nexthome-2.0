@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 
 export default function Header() {
+  const token = localStorage.getItem("token");
   return (
     <header className="shadow sticky z-50 top-0">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
@@ -11,7 +12,7 @@ export default function Header() {
           </Link>
           <div className="flex items-center lg:order-2">
             <Link
-              to="#"
+              to="/login"
               className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
             >
               Log in
@@ -50,6 +51,18 @@ export default function Header() {
                   }
                 >
                   About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 duration-200  border-b ${
+                      isActive ? "text-[#986f3b]" : "text-gray-700"
+                    } border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#986f3b] lg:p-0`
+                  }
+                >
+                  DashBoard
                 </NavLink>
               </li>
               <li>

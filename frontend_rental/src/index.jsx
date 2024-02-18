@@ -5,14 +5,19 @@ import {
   RouterProvider,
   createBrowserRouter,
   Route,
-  createRoutesFromElements ,
+  createRoutesFromElements,
 } from "react-router-dom";
 import Layout from "./components/Layout";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Contact from "./components/Contact/Contact";
-import SignIn from "./components/Auth/SignIn";
-import SignUp from "./components/Auth/SignUp";
+import {
+  About,
+  Home,
+  Contact,
+  SignIn,
+  SignUp,
+  Dashboard,
+} from "./components/index";
+import PrivateRoute from "./Routes/PrivateRoutes";
+import { AppProvider } from "./context/AppContext";
 
 // const router = createBrowserRouter([
 //   {
@@ -40,16 +45,27 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="contact" element={ <Contact /> } />
-      <Route path="login" element={<SignIn/>} />
-      <Route path="register" element={<SignUp/>}/>
+      <Route path="contact" element={<Contact />} />
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="signup" element={<SignUp />} />
+      <Route
+        path="login"
+        element={
+          // <PrivateRoute>
+          <SignIn />
+          // </PrivateRoute>
+        }
+      />
+      <Route path="register" element={<SignUp />} />
     </Route>
-  ),
+  )
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AppProvider>
+      <RouterProvider router={router} />
+    </AppProvider>
   </React.StrictMode>
 );

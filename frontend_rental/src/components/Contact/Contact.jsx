@@ -1,7 +1,4 @@
-
-
-export default function Contact ()
-{
+export default function Contact() {
   return (
     <div className="relative flex items-top justify-center min-h-[700px] bg-white sm:items-center sm:pt-0">
       <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -130,7 +127,7 @@ export default function Contact ()
 
               <button
                 type="submit"
-                className="md:w-32 bg-orange-700 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-orange-600 transition ease-in-out duration-300"
+                className="md:w-32 bg-[#986f3b] hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-orange-600 transition ease-in-out duration-300"
               >
                 Submit
               </button>
