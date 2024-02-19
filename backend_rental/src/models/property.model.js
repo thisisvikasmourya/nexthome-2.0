@@ -10,6 +10,22 @@ const propertySchema = new Schema(
       type: String,
       required: true,
     },
+    deposit: {
+      type: String,
+      required: true,
+    },
+    area: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    propertytype: {
+      type: String,
+      required: true,
+    },
 
     rentaltype: {
       type: String,
@@ -17,16 +33,14 @@ const propertySchema = new Schema(
       enum: ["sale", "rent"],
       default: "sale",
     },
-    thumbnail: {
+    images: {
       type: String,
       required: true,
     },
-    video: {
-      type: String,
-    },
-    views: {
-      type: Number,
-    },
+    // video: {
+    //   type: String,
+    // },
+
     isPublished: {
       type: Boolean,
     },
