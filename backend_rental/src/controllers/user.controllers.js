@@ -121,4 +121,8 @@ const logoutHandler = asyncHandler(async (req, res) => {
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User Logged Out"));
 });
-export { registerUser, loginUser, logoutHandler };
+
+const getCurrentUser = asyncHandler(async (req, res) => {
+  return res.status(200).json(200, req.user, "Current User Fetch Successfully");
+});
+export { registerUser, loginUser, logoutHandler, getCurrentUser };
