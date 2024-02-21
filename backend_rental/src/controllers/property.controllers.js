@@ -36,7 +36,7 @@ const addProperty = asyncHandler(async (req, res) => {
   }
   const owner = req.user?._id;
   if (!owner) {
-    throw new ApiError(400, "User not Found");
+    throw new ApiError(400, "Owner Not Found");
   }
 
   const property = await Property.create({

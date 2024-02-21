@@ -123,6 +123,8 @@ const logoutHandler = asyncHandler(async (req, res) => {
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-  return res.status(200).json(200, req.user, "Current User Fetch Successfully");
+  return res
+    .status(200)
+    .json(200, req.user._id, "Current User Fetch Successfully");
 });
 export { registerUser, loginUser, logoutHandler, getCurrentUser };
