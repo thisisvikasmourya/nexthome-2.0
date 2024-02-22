@@ -7,14 +7,14 @@ const router = express.Router();
 
 
 router.route("/add-property").post(
-  upload.fields([
+  verifyJWT,upload.fields([
     { name: "images", maxCount: 1 },
   ]),
   addProperty
 );
 
-router.route( "/update-proerty" ).patch( updateProperty )
-router.route( "/delete-property" ).delete( deleteProperty )
-router.route( "/get-property" ).get( getPropertyId )
+router.route("/update-property/:propertyId").patch(verifyJWT,upload.single("images"),updateProperty);
+router.route( "/delete-property/:propertyId" ).delete( deleteProperty )
+router.route("/get-property/:propertyId").get(getPropertyId);
 
 export default router

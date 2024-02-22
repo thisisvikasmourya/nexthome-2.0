@@ -83,11 +83,13 @@ const updateProperty = asyncHandler(async (req, res) => {
   const { propertyId } = req.params;
   console.log(propertyId);
 
-  const imagesLocalPath = req.files?.path;
+  const imagesLocalPath = req.file?.path;
+  
   if (!imagesLocalPath) {
-    throw new ApiError(400, "Images not Found");
+    throw new ApiError( 400, "Images not Found" );
+    
   }
-  const images = uploadOnCloudinary(imagesLocalPath);
+  const images = await uploadOnCloudinary(imagesLocalPath);
   if (!images) {
     throw new ApiError(400, "Error while uploading on Coludinary");
   }
