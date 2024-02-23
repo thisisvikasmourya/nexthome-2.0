@@ -16,7 +16,7 @@ import {
   SignUp,
   Dashboard,
 } from "./components/index";
-import PrivateRoute from "./Routes/PrivateRoutes";
+// import PrivateRoute from "./Routes/PrivateRoutes";
 import { AppProvider } from "./context/AppContext";
 
 // const router = createBrowserRouter([
@@ -48,14 +48,7 @@ const router = createBrowserRouter(
       <Route path="contact" element={<Contact />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="signup" element={<SignUp />} />
-      <Route
-        path="login"
-        element={
-          // <PrivateRoute>
-          <SignIn />
-          // </PrivateRoute>
-        }
-      />
+      <Route path="login" element={<SignIn />} />
       <Route path="register" element={<SignUp />} />
     </Route>
   )

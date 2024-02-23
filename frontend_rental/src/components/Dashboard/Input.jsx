@@ -9,9 +9,9 @@ const Input = ({
 }) => {
   const id = useId();
   return (
-    <div>
+    <div className="py-3">
       {label && (
-        <label className="inline-block mb-1 pl-1" htmlFor={id}>
+        <label className="inline-block text-xl mb-1 pl-1" htmlFor={id}>
           {label}
         </label>
       )}
