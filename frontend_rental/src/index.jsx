@@ -15,9 +15,17 @@ import {
   SignIn,
   SignUp,
   Dashboard,
+  CreateProperty,
+  Profile,
+  Help,
+  FavouriteList,
 } from "./components/index";
+
+import { store } from "./app/store";
+import { Provider } from "react-redux";
+
 // import PrivateRoute from "./Routes/PrivateRoutes";
-import { AppProvider } from "./context/AppContext";
+// import { AppProvider } from "./context/AppContext";
 
 // const router = createBrowserRouter([
 //   {
@@ -46,10 +54,14 @@ const router = createBrowserRouter(
       <Route path="" element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
-      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="dashboard/profile" element={<Dashboard />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<SignIn />} />
       <Route path="register" element={<SignUp />} />
+      <Route path="dashboard/add-property" element={<CreateProperty />} />
+      <Route path="dashboard/profile" element={<Profile />} />
+      <Route path="dashboard/favourite" element={<Help />} />
+      <Route path="dashboard/help" element={<FavouriteList />} />
     </Route>
   )
 );
@@ -57,8 +69,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppProvider>
-      <RouterProvider router={router} />
-    </AppProvider>
+      <Provider store={store}>
+
+      <RouterProvider router={ router } />
+      </Provider>
   </React.StrictMode>
 );

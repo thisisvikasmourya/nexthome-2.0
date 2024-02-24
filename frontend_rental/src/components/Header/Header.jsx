@@ -55,7 +55,7 @@ export default function Header() {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard/profile"
                   className={({ isActive }) =>
                     `block py-2 pr-4 pl-3 duration-200  border-b ${
                       isActive ? "text-[#986f3b]" : "text-gray-700"

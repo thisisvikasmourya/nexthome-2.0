@@ -6,4 +6,21 @@ import Contact from "./Contact/Contact";
 import SignIn from "./Auth/SignIn";
 import SignUp from "./Auth/SignUp";
 import Dashboard from "./Dashboard/DashBoard"
-export { About, Home, Header, Footer, Contact, SignIn, SignUp, Dashboard };
+import Profile from "./Dashboard/Profile/Profile";
+import FavouriteList from "./Dashboard/favourite/FavouriteList"
+import CreateProperty from "./Dashboard/form/CreateProperty";
+import Help from "./Dashboard/Help.jsx"
+export {
+  About,
+  Home,
+  Header,
+  Footer,
+  Contact,
+  SignIn,
+  SignUp,
+  Dashboard,
+  Profile,
+  FavouriteList,
+  CreateProperty,
+  Help,
+};
