@@ -6,6 +6,9 @@ const Card = () => {
       <div>
         <div>{title || "this is card Title"}</div>
         <div>{description || "this is Card description"}</div>
+        <div>
+          <img src="/bg.jpg" />
+        </div>
       </div>
     </>
   );
