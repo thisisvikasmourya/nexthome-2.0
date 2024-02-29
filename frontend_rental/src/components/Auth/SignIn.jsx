@@ -9,14 +9,14 @@ const SignIn = () => {
 
   const login = async (data) => {
     try {
-      const url = "http://localhost:8000/api/v1/users/login";
+      const url = "http://localhost:7000/api/v1/users/login";
       const response = await axios.post(url, data);
       console.log("SignIn Successfull", response.data.data);
       const token = response.data.data.accessToken;
       console.log(token);
       localStorage.setItem("token", token);
 
-      navigate("/dashboard");
+      navigate("/dashboard/profile");
     } catch (error) {
       console.error("SignIn failed:", error);
     }

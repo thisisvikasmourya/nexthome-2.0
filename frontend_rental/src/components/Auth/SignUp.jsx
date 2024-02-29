@@ -11,7 +11,7 @@ const Registration = () => {
 
   const onSubmit = async (data) => {
     try {
-      const url = "http://localhost:8000/api/v1/users/register";
+      const url = "http://localhost:7000/api/v1/users/register";
       const response = await axios.post(url, data);
       console.log("Signup successful:", response.data);
     } catch (error) {
